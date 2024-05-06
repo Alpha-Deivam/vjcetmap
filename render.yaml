@@ -9,3 +9,15 @@ services:
     healthCheckPath: /
 
 databases: []
+
+build:
+  steps:
+    - name: Install Python
+      id: python
+      args: ["python3"]
+    - name: Install dependencies
+      id: install_dependencies
+      args: ["${python.path}", "-m", "pip", "install", "-r", "requirements.txt"]
+    - name: Build and start app
+      id: build_and_start_app
+      args: ["${python.path}", "my_app.py"]
