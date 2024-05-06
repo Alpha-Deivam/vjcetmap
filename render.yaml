@@ -1,12 +1,12 @@
 services:
   - name: web
     buildCommand: pip install -r requirements.txt
-    startCommand: python app.py
+    startCommand: python my_app.py
     env:
       - key: FLASK_ENV
         value: production
       - key: FLASK_APP
-        value: app.py
+        value: my_app.py
     healthCheckPath: /
 
 databases: []
@@ -21,4 +21,4 @@ build:
       args: ["${python.path}", "-m", "pip", "install", "-r", "requirements.txt"]
     - name: Build and start app
       id: build_and_start_app
-      args: ["${python.path}", "app.py"]
+      args: ["${python.path}", "my_app.py"]
