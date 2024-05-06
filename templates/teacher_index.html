@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Navigator</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Logout button styles */
+        .logout-button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .logout-button:hover {
+            background-color: darkred;
+        }
+
+        /* Title container styles */
+        .title-container {
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            border-radius: 10px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        /* Teacher title styles */
+        .title {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        /* Container styles */
+        .container {
+            text-align: center;
+            margin-top: 50px;
+            padding: 0 20px;
+        }
+
+        /* Button styles */
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background-color 0.4s;
+        }
+
+        button:hover {
+            background-color: #075c0b;
+        }
+
+        /* Select box styles */
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            color: #007bff;
+            appearance: none;
+        }
+
+        select option {
+            background-color: #f8f9fa;
+            color: #007bff;
+        }
+
+        select:hover {
+            border-color: #0056b3;
+        }
+
+        /* Logout button container */
+        .logout-container {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="title-container">
+        <h1 class="title">TEACHER</h1>
+        <div class="logout-container">
+            <form action="/logout" method="post">
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Welcome to College Navigator</h1>
+        <p>Before you proceed, here are some key locations:</p>
+        <ul class="info-list">
+            <li>1 After Destination Shows Path from Gate from MVPA</li>
+            <li>2 After Destination Shows Path from Gate from TDPA</li>
+            <li>Principal's Office: C Block</li>
+            <li>College Office: C Block</li>
+            <li>Kiosk: C and D Block</li>
+            <li>Placement Cell: A Block</li>
+        </ul>
+        <h2>Select a Path:</h2>
+        <form action="/display_map" method="POST">
+            <select name="path_name">
+                {% for path in paths %}
+                    <option value="{{ path }}">{{ path|replace('Gate', '')|replace('.geojson', '') }}</option>
+                {% endfor %}
+            </select>
+            <br><br>
+            <button type="submit">Navigate</button>
+        </form>
+    </div>
+</body>
+</html>
