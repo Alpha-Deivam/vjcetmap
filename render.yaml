@@ -4,10 +4,8 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: python my_app.py
     env:
-      - key: FLASK_ENV
-        value: production
-      - key: FLASK_APP
-        value: my_app.py
+      FLASK_ENV: production
+      FLASK_APP: my_app.py
     healthCheckPath: /
 
 databases: []
